@@ -6,22 +6,23 @@ Frappe Client in Golang
 package main
 
 import (
-    "fmt"
+	"fmt"
+
 	frappe "github.com/akosmarton/go-frappe-client"
 )
 
 func main() {
-    client := &frappe.Client{
+	client := &frappe.Client{
 		URL:    "http://localhost:8000",
 		Key:    "api key",
 		Secret: "api secret",
 	}
 
-    doc, err := client.Get("DocType", "Document", nil)
-    if err != nil {
-        panic(err)
-    }
+	doc, err := client.Get("DocType", "Document", nil)
+	if err != nil {
+		panic(err)
+	}
 
-    fmt.Println(doc)
+	fmt.Println(doc)
 }
 ```
