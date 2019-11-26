@@ -11,8 +11,7 @@ import (
 )
 
 func main() {
-
-	client := &frappe.Client{
+    client := &frappe.Client{
 		URL:    "http://localhost:8000",
 		Key:    "api key",
 		Secret: "api secret",
