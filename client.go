@@ -189,7 +189,7 @@ func (c *Client) Put(docType string, name string, doc Document) (Document, error
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, u.String(), buf)
+	req, err := http.NewRequest(http.MethodPut, u.String(), buf)
 	if err != nil {
 		return nil, err
 	}

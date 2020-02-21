@@ -1,5 +1,7 @@
 package frappe
 
+import "fmt"
+
 // Document represents a Frappe document
 type Document map[string]interface{}
 
@@ -11,6 +13,11 @@ func NewDocument() Document {
 // Get returns the value of a field
 func (d Document) Get(field string) interface{} {
 	return d[field]
+}
+
+// GetAsString returns the value of a field as string
+func (d Document) GetAsString(field string) string {
+	return fmt.Sprintf("%v", d[field])
 }
 
 // Set sets the value of a field
