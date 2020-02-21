@@ -26,3 +26,8 @@ func main() {
 	fmt.Println(doc)
 }
 ```
+
+## Running Tests
+```
+# URL="https://demo.erpnext.com" KEY="..." SECRET="..."  go test
+```
