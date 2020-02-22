@@ -85,3 +85,20 @@ func TestClient_Put(t *testing.T) {
 		log.Fatal("Lead name mismatch")
 	}
 }
+
+func TestClient_AddTag(t *testing.T) {
+	client := getClient()
+
+	doc := NewDocument()
+	doc["lead_name"] = "Name"
+
+	lead, err := client.Post("Lead", doc)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = client.AddTag("Lead", lead, "MyTag")
+	if err != nil {
+		log.Fatal(err)
+	}
+}

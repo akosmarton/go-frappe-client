@@ -23,6 +23,11 @@ func main() {
 		panic(err)
 	}
 
+	err = client.AddTag("DocType", doc, "MyTag")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	fmt.Println(doc)
 }
 ```
