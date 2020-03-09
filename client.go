@@ -189,7 +189,7 @@ func (c *Client) Put(docType string, name string, doc Document) (Document, error
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, u.String(), buf)
+	req, err := http.NewRequest(http.MethodPut, u.String(), buf)
 	if err != nil {
 		return nil, err
 	}
@@ -214,4 +214,36 @@ func (c *Client) Put(docType string, name string, doc Document) (Document, error
 	}
 
 	return respStruct.Data, nil
+}
+
+// AddTag adds tag to document
+func (c *Client) AddTag(docType string, doc Document, tag string) error {
+	u, err := url.Parse(c.URL)
+	if err != nil {
+		return err
+	}
+
+	u.Path = "/api/method/frappe.desk.doctype.tag.tag.add_tag"
+	q := u.Query()
+	q.Add("dn", doc.GetAsString("name"))
+	q.Add("dt", docType)
+	q.Add("tag", tag)
+	u.RawQuery = q.Encode()
+
+	req, err := http.NewRequest(http.MethodPost, u.String(), nil)
+	if err != nil {
+		return err
+	}
+	req.Header.Set("Authorization", "token "+c.Key+":"+c.Secret)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return err
+	}
+
+	if resp.StatusCode == http.StatusOK {
+		return nil
+	} else {
+		return fmt.Errorf("HTTP Status Code: %d (%s)", resp.StatusCode, resp.Status)
+	}
 }

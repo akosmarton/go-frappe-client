@@ -23,6 +23,16 @@ func main() {
 		panic(err)
 	}
 
+	err = client.AddTag("DocType", doc, "MyTag")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	fmt.Println(doc)
 }
+```
+
+## Running Tests
+```
+# URL="https://demo.erpnext.com" KEY="..." SECRET="..."  go test
 ```
